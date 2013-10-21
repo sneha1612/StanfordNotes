@@ -96,6 +96,69 @@
       return retVal;
     }
 
+5. InsertNth
+============
+
+    public void insertNth(Node root, int index, int data) {
+      if(root == null)
+        return;
+
+      Node temp = root;
+      int counter = 0;
+
+      if(index == 0) {
+        Node newNode = new Node(data, temp);
+        root = newNode;
+      } 
+      else {
+        while(temp != null) {
+          if(counter == index-1) {
+            node newNode = new Node(data, null);
+            temp.setNext(newNode);
+            newNode.setNext(temp.getNext());
+          }
+          counter++;
+          temp = temp.getNext();
+        }
+      }
+    }
+
+6. SortedInsert
+===============
+
+    public void sortedInsert(Node root, int data) {
+      if(root == null || root.getVal() > data) {
+        Node newNode = new Node(data, root);
+        root = newNode;
+      }
+      else {
+        Node temp = root;
+        while(temp.getNext()!=null && temp.getNext().getVal() > data) {
+          temp = temp.next;
+        }
+        Node newNode = new Node(data, temp.next);
+        temp.setNext(newNode);
+      }
+    }
+
+17. Reverse
+===========
+
+    public void reverse(Node root) {
+      Node curr = root;
+      Node prev = null;
+      Node first = null;
+
+      while(prev != null) {
+        first = prev;
+        prev = curr;
+        curr = curr.next;
+        prev.setNext(first);
+      }
+      root = prev;
+    }
+
+
 
 
 
