@@ -115,3 +115,64 @@
       }
       return temp.getVal();
     }
+
+6. PrintTree
+============
+
+    public void printTree(Node root) {
+      Node temp = root;
+
+      if(temp == null)
+        return;
+
+      printTree(temp.getLeft());
+      System.out.println(temp.getVal());
+      printTree(temp.getRight());
+    }
+
+7. HasPathSum
+=============
+
+    public boolean hasPathSum(Node root, int sum) {
+      Node temp = root;
+
+      if(temp == null)
+        return(sum == 0);
+      else {
+        int subSum = sum - temp.getVal();
+        return (hasPathSum(temp.getLeft(), subSum) || hasPathSum(temp.getRight(), subSum))
+      }
+    }
+
+8. printPaths
+=============
+
+    public void printPaths(Node root) {
+      int path[1000];
+
+      printPathsHelper(root, path, 0);
+
+    }
+
+    public void printPathsHelper(Node root, int[] path, int length) {
+      Node temp = root;
+      if(temp == null) 
+        return;
+
+      path[length] = temp.getVal();
+      length++;
+
+      if(temp.getLeft() == null && temp.getRight() == null)
+        print(path, length);
+      else {
+        printPathsHelper(temp.getLeft(), path, length);
+        printPathsHelper(temp.getRight(), path, length);
+      }
+    }
+
+    public void print(int[] path, int length) {
+      for(int i =0; i<length; i++) {
+        System.out.print(path[i]);
+      }
+      System.out.println();
+    }
