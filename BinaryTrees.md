@@ -58,7 +58,7 @@
 =========
 
     public Node insert(Node root, int data) {
-      Node temp = temp;
+      Node temp = root;
       if(temp == null) {
         Node newNode = new Node(data, null, null);
         return newNode;
@@ -70,7 +70,7 @@
           insert(temp.getRight(), data);
       }
 
-      return temp;
+      return root;
     }
 
 3. Size
